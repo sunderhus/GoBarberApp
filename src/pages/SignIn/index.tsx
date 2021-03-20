@@ -39,6 +39,7 @@ const SignIn: React.FC = () => {
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        enabled
       >
         <ScrollView
           contentContainerStyle={{ flex: 1 }}
@@ -70,13 +71,11 @@ const SignIn: React.FC = () => {
         </ScrollView>
       </KeyboardAvoidingView>
       <CreateAccountButton
-        onPress={() => {
-          console.log('deu');
-        }}
+        onPress={() => navitagion.navigate('SignUp')}
       >
         <Icon name={'log-in'} size={20} color={'#ff9000'} />
 
-        <CreateAccountButtonText onPress={() => navitagion.navigate('SignUp')}>
+        <CreateAccountButtonText>
           Criar conta
         </CreateAccountButtonText>
       </CreateAccountButton>

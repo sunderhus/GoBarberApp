@@ -1,20 +1,19 @@
-import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 import {
-  View,
   Image,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
+  ScrollView, View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-
+import logoImg from '../../assets/logo.png';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import { BackToSignIn, BackToSignInText, Container, Title } from './styles';
 
-import logoImg from '../../assets/logo.png';
 
-import { Container, Title, BackToSignIn, BackToSignInText } from './styles';
+
 const SingUp: React.FC = () => {
   const navigation = useNavigation();
 
@@ -31,28 +30,26 @@ const SingUp: React.FC = () => {
           <Container>
             <Image source={logoImg} />
             <View>
-              <Title>Faça seu logon</Title>
+              <Title>Crie sua conta</Title>
             </View>
             <Input name="name" icon="user" placeholder="Nome" />
             <Input name="email" icon="mail" placeholder="E-mail" />
             <Input name="password" icon="lock" placeholder="Senha" />
             <Button
               onPress={() => {
-                window.alert('clicou');
+                console.log('oioi')
               }}
             >
-              Entrar
+              Cadastrar
             </Button>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
       <BackToSignIn
-        onPress={() => {
-          console.log('deu');
-        }}
+        onPress={() => navigation.goBack()}
       >
         <Icon name={'arrow-left'} size={20} color={'#fff'} />
-        <BackToSignInText onPress={() => navigation.goBack()}>
+        <BackToSignInText>
           Voltar para logon
         </BackToSignInText>
       </BackToSignIn>

@@ -3,12 +3,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SingUp';
+
 const Stack = createStackNavigator();
 
 const AuthRoutes: React.FC = () => {
   return (
     <Stack.Navigator
-      initialRouteName="SignIn"
+      initialRouteName="SignUp"
       screenOptions={{
         headerShown: false,
         cardStyle: {
