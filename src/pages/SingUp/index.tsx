@@ -4,15 +4,14 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
-  ScrollView, View
+  ScrollView,
+  View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import logoImg from '../../assets/logo.png';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { BackToSignIn, BackToSignInText, Container, Title } from './styles';
-
-
 
 const SingUp: React.FC = () => {
   const navigation = useNavigation();
@@ -25,7 +24,7 @@ const SingUp: React.FC = () => {
       >
         <ScrollView
           contentContainerStyle={{ flex: 1 }}
-          keyboardShouldPersistTaps={'handled'}
+          keyboardShouldPersistTaps="handled"
         >
           <Container>
             <Image source={logoImg} />
@@ -37,7 +36,7 @@ const SingUp: React.FC = () => {
             <Input name="password" icon="lock" placeholder="Senha" />
             <Button
               onPress={() => {
-                console.log('oioi')
+                console.log('oioi');
               }}
             >
               Cadastrar
@@ -45,13 +44,9 @@ const SingUp: React.FC = () => {
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
-      <BackToSignIn
-        onPress={() => navigation.goBack()}
-      >
-        <Icon name={'arrow-left'} size={20} color={'#fff'} />
-        <BackToSignInText>
-          Voltar para logon
-        </BackToSignInText>
+      <BackToSignIn onPress={() => navigation.goBack()}>
+        <Icon name="arrow-left" size={20} color="#fff" />
+        <BackToSignInText>Voltar para logon</BackToSignInText>
       </BackToSignIn>
     </>
   );

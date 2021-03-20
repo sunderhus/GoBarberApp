@@ -35,5 +35,5 @@ export const BackToSignInText = styled.Text`
   color: #fff;
   font-size: 18px;
   margin-left: 16px;
-  padding: 0 0 ${getBottomSpace() + 'px'} 0;
+  padding: 0 0 ${`${getBottomSpace()}px`} 0;
 `;

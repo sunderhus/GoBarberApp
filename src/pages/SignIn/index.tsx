@@ -26,11 +26,12 @@ import {
   CreateAccountButton,
   CreateAccountButtonText,
 } from './styles';
+
 const SignIn: React.FC = () => {
   const navitagion = useNavigation();
   const formRef = useRef<FormHandles>(null);
 
-  const handleSignIn = useCallback((data: object) => {
+  const handleSignIn = useCallback((data: Record<string, unknown>) => {
     console.log(data);
   }, []);
 
@@ -43,7 +44,7 @@ const SignIn: React.FC = () => {
       >
         <ScrollView
           contentContainerStyle={{ flex: 1 }}
-          keyboardShouldPersistTaps={'handled'}
+          keyboardShouldPersistTaps="handled"
         >
           <Container>
             <Image source={logoImg} />
@@ -55,11 +56,7 @@ const SignIn: React.FC = () => {
             <Form ref={formRef} onSubmit={handleSignIn}>
               <Input name="email" icon="mail" placeholder="E-mail" />
               <Input name="password" icon="lock" placeholder="Senha" />
-              <Button
-                onPress={() => {
-                  formRef.current?.submitForm();
-                }}
-              >
+              <Button onPress={() => formRef.current?.submitForm()}>
                 Entrar
               </Button>
             </Form>
@@ -70,14 +67,10 @@ const SignIn: React.FC = () => {
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
-      <CreateAccountButton
-        onPress={() => navitagion.navigate('SignUp')}
-      >
-        <Icon name={'log-in'} size={20} color={'#ff9000'} />
+      <CreateAccountButton onPress={() => navitagion.navigate('SignUp')}>
+        <Icon name="log-in" size={20} color="#ff9000" />
 
-        <CreateAccountButtonText>
-          Criar conta
-        </CreateAccountButtonText>
+        <CreateAccountButtonText>Criar conta</CreateAccountButtonText>
       </CreateAccountButton>
     </>
   );
