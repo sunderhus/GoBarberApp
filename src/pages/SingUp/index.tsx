@@ -1,5 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import {
   Image,
   KeyboardAvoidingView,
@@ -7,6 +6,9 @@ import {
   ScrollView,
   View,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { FormHandles } from '@unform/core';
+import { Form } from '@unform/mobile';
 import Icon from 'react-native-vector-icons/Feather';
 import logoImg from '../../assets/logo.png';
 import Button from '../../components/Button';
@@ -15,12 +17,18 @@ import { BackToSignIn, BackToSignInText, Container, Title } from './styles';
 
 const SingUp: React.FC = () => {
   const navigation = useNavigation();
+  const formRef = useRef<FormHandles>(null);
+
+  const handleSubmit = useCallback((data: Record<string, unknown>) => {
+    console.log(data);
+  }, []);
 
   return (
     <>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        enabled
       >
         <ScrollView
           contentContainerStyle={{ flex: 1 }}
@@ -31,16 +39,14 @@ const SingUp: React.FC = () => {
             <View>
               <Title>Crie sua conta</Title>
             </View>
-            <Input name="name" icon="user" placeholder="Nome" />
-            <Input name="email" icon="mail" placeholder="E-mail" />
-            <Input name="password" icon="lock" placeholder="Senha" />
-            <Button
-              onPress={() => {
-                console.log('oioi');
-              }}
-            >
-              Cadastrar
-            </Button>
+            <Form ref={formRef} onSubmit={handleSubmit}>
+              <Input name="name" icon="user" placeholder="Nome" />
+              <Input name="email" icon="mail" placeholder="E-mail" />
+              <Input name="password" icon="lock" placeholder="Senha" />
+              <Button onPress={() => formRef.current?.submitForm()}>
+                Cadastrar
+              </Button>
+            </Form>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>

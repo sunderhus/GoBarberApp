@@ -9,7 +9,6 @@ const Stack = createStackNavigator();
 const AuthRoutes: React.FC = () => {
   return (
     <Stack.Navigator
-      initialRouteName="SignUp"
       screenOptions={{
         headerShown: false,
         cardStyle: {
