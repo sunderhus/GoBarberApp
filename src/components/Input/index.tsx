@@ -36,6 +36,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
   }, []);
+
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
 
@@ -53,7 +54,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
       name: fieldName,
       ref: inputValueRef.current,
       path: 'value',
-      setValue(ref: any, value) {
+      setValue(_, value) {
         inputValueRef.current.value = value;
         inputElementRef.current.setNativeProps({ text: value });
       },
@@ -65,7 +66,7 @@ const Input: React.ForwardRefRenderFunction<InputRef, InputProps> = (
   }, [fieldName, registerField]);
 
   return (
-    <Container isFocused={isFocused}>
+    <Container isFocused={isFocused} hasError={!!error}>
       {!!icon && (
         <Icon
           name={icon}
