@@ -31,6 +31,7 @@
   "rules": {
     "react/prop-types":"off",
     "no-unused-expressions":"off",
+    "@typescript-eslint/ban-types":"warn",
     "@typescript-eslint/explicit-module-boundary-types":"off",
     "@typescript-eslint/no-unused-expressions": "off",
     "react/jsx-one-expression-per-line": "off",
