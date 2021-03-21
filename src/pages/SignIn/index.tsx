@@ -29,54 +29,53 @@ import {
   CreateAccountButtonText,
 } from './styles';
 import getValidationErros from '../../utils/ValidationErros';
+import { useAuth } from '../../hooks/auth';
 
 interface SignInFormData {
-  name: string;
   email: string;
+  password: string;
 }
 const SignIn: React.FC = () => {
   const navitagion = useNavigation();
+  const { signIn } = useAuth();
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  const handleSignIn = useCallback(async (data: SignInFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSignIn = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('E-mail obrigatório.')
-          .email('Informe um e-mail válido'),
-        password: Yup.string().min(6, 'Informe sua senha.'),
-      });
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('E-mail obrigatório.')
+            .email('Informe um e-mail válido'),
+          password: Yup.string().min(6, 'Informe sua senha.'),
+        });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-      // await signIn({
-      //   email: data.email,
-      //   password: data.password,
-      // });
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErros(err);
+        await signIn({
+          email: data.email,
+          password: data.password,
+        });
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErros(err);
 
-        formRef.current?.setErrors(errors);
+          formRef.current?.setErrors(errors);
+        }
+
+        Alert.alert(
+          'Erro na autenticação',
+          'Verifique o e-mail e senha usados no login e tente novamente.',
+        );
       }
-
-      Alert.alert(
-        'Erro na autenticação',
-        'Verifique o e-mail e senha usados no login e tente novamente.',
-      );
-      // addToast({
-      //   type: ToastVariations.ALERT,
-      //   title: 'Erro na autenticação...',
-      //   description:
-      //     'Verifique o e-mail e senha usados no login e tente novamente.',
-      // });
-    }
-  }, []);
+    },
+    [signIn],
+  );
 
   return (
     <>
