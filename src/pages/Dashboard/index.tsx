@@ -1,6 +1,5 @@
 import { useNavigation } from '@react-navigation/core';
 import React, { useCallback, useEffect, useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Feather';
 import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
@@ -71,7 +70,7 @@ const Dashboard: React.FC = () => {
         data={providers}
         keyExtractor={provider => provider.id}
         ListHeaderComponent={() => (
-          <ProvidersListTitle>Cabeleleiros</ProvidersListTitle>
+          <ProvidersListTitle>Profissionais</ProvidersListTitle>
         )}
         ListFooterComponent={() => <ProvidersListFooter />}
         fadingEdgeLength={128}
