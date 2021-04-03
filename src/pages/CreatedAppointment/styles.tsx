@@ -2,13 +2,18 @@ import { FlatList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
-
 import { IProvider } from '.';
 
 interface ProviderContainerProps {
   selected: boolean;
 }
-
+interface HourProps {
+  available: boolean;
+  selected: boolean;
+}
+interface HourTextProps {
+  selected: boolean;
+}
 interface ProviderName {
   selected: boolean;
 }
@@ -25,6 +30,9 @@ export const Header = styled.View`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const Content = styled.ScrollView``;
+
 export const BackButton = styled.TouchableOpacity``;
 export const HeaderTitle = styled.Text`
   color: #f4ede8;
@@ -81,9 +89,51 @@ export const OpenDatePickerButton = styled(RectButton)`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
+  font-family: 'RobotoSlab-Medium';
+  margin: 0 24px 24px;
 `;
 export const OpenDatePickerButtonText = styled.Text`
   font-family: 'RobotoSlab-Medium';
   font-size: 16px;
   color: #232129;
 `;
+
+export const Schedule = styled.View`
+  padding: 24px 0 16px;
+`;
+export const ScheduleTitle = styled(CalendarTitle)`
+  margin-top: 0px;
+`;
+export const ScheduleSection = styled.View`
+  margin-bottom: 24px;
+`;
+export const ScheduleSectionTitle = styled.Text`
+  font-size: 18px;
+  font-family: 'RobotoSlab-Regular';
+  color: #999591;
+  margin: 0 24px 12px;
+`;
+export const ScheduleSectionContent = styled.ScrollView.attrs({
+  contentContainerStyle: { paddingHorizontal: 24 },
+  horizontal: true,
+  showsHorizontalScrollIndicator: false,
+})``;
+
+export const Hour = styled(RectButton)<HourProps>`
+  padding: 12px;
+  background: ${props => (props.selected ? '#ff9000' : '#3e3b47')};
+  border-radius: 10px;
+  margin-right: 8px;
+
+  opacity: ${props => (props.available ? 1 : 0.25)};
+`;
+
+export const HourText = styled.Text<HourTextProps>`
+  color: ${props => (props.selected ? '#232129' : '#f4ede8')};
+  font-size: 16px;
+  font-family: 'RobotoSlab-Regular';
+`;
+
+export const CreateAppointmentButton = styled(OpenDatePickerButton)``;
+
+export const CreateAppointmentButtonText = styled(OpenDatePickerButtonText)``;
