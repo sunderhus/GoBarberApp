@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Platform, Alert } from 'react-native';
 import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
 import {
@@ -139,7 +140,9 @@ const CreateAppointment: React.FC = () => {
         return {
           hour,
           available,
-          hourFormatted: format(new Date().setHours(hour), ' HH:00'),
+          hourFormatted: format(new Date().setHours(hour), 'HH:00', {
+            locale: ptBR,
+          }),
         };
       });
   }, [availability]);
@@ -151,7 +154,9 @@ const CreateAppointment: React.FC = () => {
         return {
           hour,
           available,
-          hourFormatted: format(new Date().setHours(hour), ' HH:00'),
+          hourFormatted: format(new Date().setHours(hour), ' HH:00', {
+            locale: ptBR,
+          }),
         };
       });
   }, [availability]);

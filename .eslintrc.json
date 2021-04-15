@@ -29,6 +29,7 @@
     "prettier"
   ],
   "rules": {
+
     "react/prop-types":"off",
     "no-unused-expressions":"off",
     "@typescript-eslint/ban-types":"warn",
@@ -48,6 +49,7 @@
       }
     ],
     "import/prefer-default-export": "off",
+    "import/no-duplicates":"off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {
